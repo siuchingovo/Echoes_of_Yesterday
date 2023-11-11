@@ -7,7 +7,7 @@ public class HandClimbing : MonoBehaviour
 
     private Vector3 prevHandPosition = Vector3.zero;
     public Vector3 Delta { private set; get; } = Vector3.zero;
-    private bool isGrabbing = false;
+    public bool isGrabbing = false;
     void Start()
     {
         prevHandPosition = transform.position;

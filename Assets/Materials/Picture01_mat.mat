@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: White_mat
+  m_Name: Picture01_mat
   m_Shader: {fileID: -6465566751694194690, guid: 99ad704e09e887c49a4889fd10de1600,
     type: 3}
   m_ValidKeywords: []
@@ -88,7 +88,7 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Cull: 0
+    - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
@@ -98,7 +98,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _NoiseStrength: 0.13
+    - _NoiseStrength: 0.49
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -109,9 +109,9 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _WorkflowMode: 0
+    - _WorkflowMode: 1
     - _ZWrite: 1
-    - _cutOffHeight: 1.7
+    - _cutOffHeight: -0.12
     - _threshold: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
@@ -121,7 +121,7 @@ Material:
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _blend: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &7923160112805517395
+--- !u!114 &9102923069017512052
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
