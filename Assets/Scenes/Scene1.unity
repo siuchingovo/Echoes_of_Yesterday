@@ -604,6 +604,8 @@ PlayableDirector:
     value: {fileID: 84086910}
   - key: {fileID: 1012019793824410657, guid: 6254e3967ab4f104e95067d37ca47b91, type: 2}
     value: {fileID: 673916744590649009}
+  - key: {fileID: 1165518906270565035, guid: 6254e3967ab4f104e95067d37ca47b91, type: 2}
+    value: {fileID: 1813555157}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &88735212
@@ -10527,6 +10529,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1099291249}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &1099291251 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6187237609204904597, guid: e433728ef46b23a49bdb16a66a2cb53e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1099291249}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1112188507
 GameObject:
   m_ObjectHideFlags: 0
@@ -14152,6 +14160,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1813555155}
   - component: {fileID: 1813555154}
+  - component: {fileID: 1813555156}
+  - component: {fileID: 1813555157}
   m_Layer: 0
   m_Name: FacialManager
   m_TagString: Untagged
@@ -14174,6 +14184,8 @@ MonoBehaviour:
   getFacialData: 1
   AvatarFace: {fileID: 1630844111}
   Lip_corner_Up_L: 0
+  Lip_Down_L: 0
+  Lip_Down_R: 0
 --- !u!4 &1813555155
 Transform:
   m_ObjectHideFlags: 0
@@ -14189,6 +14201,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1813555156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813555153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0ce6cc5d16b6614882b7baa58196730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pic_value: -1.15
+  quest: 000000
+  faceManager: {fileID: 1813555154}
+  pic_mat:
+  - {fileID: 1099291251}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &1813555157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813555153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: ca4037db793e91743a24c98b5b7b6235, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1813555156}
+          m_TargetAssemblyTypeName: Picture_control, Assembly-CSharp
+          m_MethodName: SetQuestTrue
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1822025163
 GameObject:
   m_ObjectHideFlags: 0
@@ -15857,7 +15918,6 @@ GameObject:
   - component: {fileID: 56209291436194222}
   - component: {fileID: 673916744590649008}
   - component: {fileID: 673916744590649009}
-  - component: {fileID: 673916744590649010}
   m_Layer: 0
   m_Name: Picture_01
   m_TagString: Untagged
@@ -15953,23 +16013,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &673916744590649010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 673916744590649006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0ce6cc5d16b6614882b7baa58196730, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pic_value: -1.1
-  pictureNum: 0
-  quest: 0
-  faceManager: {fileID: 1813555154}
-  pic_mat: {fileID: 0}
 --- !u!33 &726677217735567887
 MeshFilter:
   m_ObjectHideFlags: 0
