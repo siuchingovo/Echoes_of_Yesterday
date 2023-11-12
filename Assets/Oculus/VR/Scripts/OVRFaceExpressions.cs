@@ -171,6 +171,8 @@ public class OVRFaceExpressions : MonoBehaviour, IReadOnlyCollection<float>, OVR
 
         EyeFollowingBlendshapesValid = ValidExpressions && _currentFaceState.Status.IsEyeFollowingBlendshapesValid;
         expression32_value = _currentFaceState.ExpressionWeights[32];
+        expression30_value = _currentFaceState.ExpressionWeights[30];
+        expression31_value = _currentFaceState.ExpressionWeights[31];
         expression0_value = _currentFaceState.ExpressionWeights[0];
         expression1_value = _currentFaceState.ExpressionWeights[1];
         expression55_value = _currentFaceState.ExpressionWeights[55];

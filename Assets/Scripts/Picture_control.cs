@@ -6,7 +6,7 @@ public class Picture_control : MonoBehaviour
 {
     public float pic_value = -1.1f;
     public int pictureNum;
-    public bool quest;
+    public bool[] quest;
     public facialManager faceManager;
     public Material pic_mat;
     private float lip_value;
@@ -19,19 +19,16 @@ public class Picture_control : MonoBehaviour
     
     void Update()
     {
-        if(quest)
+        if(quest[0] == true)
         {
-            if (faceManager.Lip_corner_Up_L > 0.0f)
+            if ((faceManager.lip_down_L + faceManager.lip_down_R)/2 > 0.0f) //Sad face -> Lip Corner Pull Down
             {
-                lip_value = faceManager.Lip_corner_Up_L;
+                lip_value = (faceManager.lip_down_L + faceManager.lip_down_R)/2;
                 
                 pic_value += lip_value*0.025f;
-                // current_value = pic_value;
                 pic_mat.SetFloat("_cutOffHeight", pic_value);
                 
             }
-            
-            
         }
     }
 }
