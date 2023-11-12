@@ -39,6 +39,12 @@ public class OVRFaceExpressions : MonoBehaviour, IReadOnlyCollection<float>, OVR
     [Header("Happy")]
     public float expression32_value;
 
+    [Header("Sad")]
+    [Tooltip("Lip_Corner_Depressor_L")]
+    public float expression30_value;
+    [Tooltip("Lip_Corner_Depressor_R")]
+    public float expression31_value;
+
     [Header("Angry")]
     public float expression0_value;
     public float expression1_value;
