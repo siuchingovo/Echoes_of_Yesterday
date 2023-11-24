@@ -19,7 +19,7 @@ public class NoteSpawn : MonoBehaviour
         for(int i = 0; i < 2; i++){
             GameObject clone = Instantiate(Note, new Vector3(0, 0, 0), Quaternion.identity); //new Quaternion(0.0f,-0.70710682f,0f,0.707106829f));
             clone.transform.parent = this.transform;
-            clone.transform.localPosition = new Vector3(beatPos[i], 0, trails[Random.Range(0, 4)]);
+            clone.transform.localPosition = new Vector3(beatPos[i], 0.5f, trails[Random.Range(0, 4)]);
             clone.transform.localRotation = new Quaternion(0.0f,-0.70710682f,0f,0.707106829f);
             clone.transform.localScale = new Vector3(0.3f, 6f, 0.3f);
 
