@@ -16,7 +16,9 @@ namespace PathCreation.Examples
         }
 
         public void TriggerUpdate() {
+            print("TriggerUpdate");
             PathUpdated();
+            print("PathUpdated");
         }
 
 
