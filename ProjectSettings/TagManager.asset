@@ -8,6 +8,9 @@ TagManager:
   - SamplesInfoPanel
   - RoomLight
   - ClimbObject
+  - Note
+  - PlayerHand_L
+  - PlayerHand_R
   layers:
   - Default
   - TransparentFX
