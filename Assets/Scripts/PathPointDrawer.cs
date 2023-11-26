@@ -22,6 +22,8 @@ public class PathPointDrawer : MonoBehaviour
     public Quaternion playerOriginalRotation;
     public bool onTrain;
     public float positionUpOffset;
+
+    public EasyMovementController easyMovementController;
     
 
     // Start is called before the first frame update
@@ -53,6 +55,7 @@ public class PathPointDrawer : MonoBehaviour
                 player.transform.parent = null;
                 onTrain = false;
                 trainController.transform.Find("Model").gameObject.SetActive(true);
+                easyMovementController.enableControl = true;
             } else { // from audience to train
                 playerOriginalPostion = player.position;
                 playerOriginalRotation = player.rotation;
@@ -61,6 +64,7 @@ public class PathPointDrawer : MonoBehaviour
                 player.transform.parent = trainController.transform;
                 onTrain = true;
                 trainController.transform.Find("Model").gameObject.SetActive(false);
+                easyMovementController.enableControl = false;
             }
         }
     }
