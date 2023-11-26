@@ -15,6 +15,7 @@ public class PathPointDrawer : MonoBehaviour
     public OVRInput.Controller controller; // 設置控制器
     public Transform rightHandAnchor; // 右手錨點
     public bool canDraw;
+    public MRTrainController trainController;
     
 
     // Start is called before the first frame update
@@ -35,6 +36,7 @@ public class PathPointDrawer : MonoBehaviour
         }
         if (OVRInput.GetDown(OVRInput.Button.One, controller)) { // 如果按下空格鍵
             canDraw = false;
+            trainController.StartRiding();
         }
     }
 
