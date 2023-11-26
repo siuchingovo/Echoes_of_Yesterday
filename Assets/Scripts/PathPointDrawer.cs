@@ -2,46 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PathCreation;
-using PathCreation.Examples;
 
 public class PathPointDrawer : MonoBehaviour
 {
-    public GameObject pathPointPrefab; // 路徑點的預置物件
-    public List<Transform> pathPoints; // 存儲路徑點的列表
-    public Transform pathPointsHolder; // 存儲路徑點的遊戲物件
-    public PathCreator pathCreator; // 路徑創建器，用於創建貝塞爾曲線路徑
-
-    public RoadMeshCreator roadMeshCreator; // 參考 Road Mesh Creator 腳本
+    public OVRInput.Controller controller = OVRInput.Controller.RTouch;
+    public GameObject rightAnchor;
+    public GameObject pathPointPrefab;
+    public List<Transform> pathPoints;
+    public Transform pathPointsHolder;
+    public PathCreator pathCreator;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        pathPoints = new List<Transform>(); // 初始化路徑點列表
+        pathPoints = new List<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) { // 如果按下空格鍵
-            DrawPoint(transform.position); // 呼叫 DrawPoint 方法，繪製路徑點
+        if(OVRInput.GetDown(OVRInput.Button.One, controller)) {
+            Vector3 controllerPosition = rightAnchor.transform.position;
+            Vector3 controllerForward = rightAnchor.transform.forward;
+            float raylength = 5f;
+            DrawPoint(controllerPosition + controllerForward * raylength);
         }
     }
-
-    // 繪製路徑點的方法
-    void DrawPoint(Vector3 position)
-    {
-        // 創建一個新的路徑點遊戲物件並將其實例化到指定位置，並將其作為子物件放入路徑點容器中
+    void DrawPoint(Vector3 position) {
         GameObject pathPoint = Instantiate(pathPointPrefab, position, Quaternion.identity, pathPointsHolder);
-        pathPoints.Add(pathPoint.transform); // 將路徑點的變換元素添加到路徑點列表中
+        pathPoints.Add(pathPoint.transform);
 
-        // 創建一個新的貝塞爾曲線路徑，使用路徑點列表作為控制點，isClosed 參數表示路徑是否封閉，PathSpace 表示路徑的坐標空間
-        BezierPath bezierPath = new BezierPath(pathPoints, isClosed: false, PathSpace.xyz);
-        pathCreator.bezierPath = bezierPath; // 將貝塞爾曲線路徑分配給路徑創建器
-        print("bezierPath done");
-        // 調用 Road Mesh Creator 中的 PathUpdated 方法以重新生成道路網格
-        roadMeshCreator.TriggerUpdate();
+        // Create a new bezier path from the pathPoints.
+        BezierPath bezierPath = new BezierPath (pathPoints, isClosed: false, PathSpace.xyz);
+        pathCreator.bezierPath = bezierPath;
 
-        // // 添加一個新的路徑點到路徑的末尾（已被註解掉的部分）
+        // // Add a new pathPoints to the path end
         // pathCreator.bezierPath.AddSegmentToEnd(position);
     }
 }
