@@ -797,6 +797,7 @@ MonoBehaviour:
   playerOriginalPostion: {x: 0, y: 0, z: 0}
   playerOriginalRotation: {x: 0, y: 0, z: 0, w: 0}
   onTrain: 0
+  positionUpOffset: 0.3
 --- !u!4 &702324310
 Transform:
   m_ObjectHideFlags: 0
