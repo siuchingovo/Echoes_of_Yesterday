@@ -16,6 +16,12 @@ public class PathPointDrawer : MonoBehaviour
     public Transform rightHandAnchor; // 右手錨點
     public bool canDraw;
     public MRTrainController trainController;
+
+    public Transform player;
+    public Vector3 playerOriginalPostion;
+    public Quaternion playerOriginalRotation;
+    public bool onTrain;
+    public float positionUpOffset;
     
 
     // Start is called before the first frame update
@@ -23,6 +29,7 @@ public class PathPointDrawer : MonoBehaviour
     {
         pathPoints = new List<Transform>(); // 初始化路徑點列表
         canDraw = true;
+        onTrain = false;
     }
 
     // Update is called once per frame
@@ -37,6 +44,24 @@ public class PathPointDrawer : MonoBehaviour
         if (OVRInput.GetDown(OVRInput.Button.One, controller)) { // 如果按下空格鍵
             canDraw = false;
             trainController.StartRiding();
+        }
+        if (OVRInput.GetDown(OVRInput.Button.Two, controller)) { // 如果按下空格鍵
+            // TODO : change viewpoint
+            if (onTrain) { // from train to audience
+                player.position = playerOriginalPostion;
+                player.rotation = playerOriginalRotation;
+                player.transform.parent = null;
+                onTrain = false;
+                trainController.transform.Find("Model").gameObject.SetActive(true);
+            } else { // from audience to train
+                playerOriginalPostion = player.position;
+                playerOriginalRotation = player.rotation;
+                player.position = trainController.transform.position + trainController.transform.up * positionUpOffset;
+                player.forward = trainController.transform.forward;
+                player.transform.parent = trainController.transform;
+                onTrain = true;
+                trainController.transform.Find("Model").gameObject.SetActive(false);
+            }
         }
     }
 
@@ -54,7 +79,11 @@ public class PathPointDrawer : MonoBehaviour
         // 調用 Road Mesh Creator 中的 PathUpdated 方法以重新生成道路網格
         roadMeshCreator.TriggerUpdate();
 
-        // // 添加一個新的路徑點到路徑的末尾（已被註解掉的部分）
+        
+        // 設置貝塞爾曲線路徑的全局旋轉角度
+        bezierPath.GlobalNormalsAngle = 90f;
+
+        // 添加一個新的路徑點到路徑的末尾（已被註解掉的部分）
         // pathCreator.bezierPath.AddSegmentToEnd(position);
     }
 }
