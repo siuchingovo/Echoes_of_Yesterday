@@ -680,10 +680,15 @@ PrefabInstance:
       propertyPath: _hmd
       value: 
       objectReference: {fileID: 518697555}
+    - target: {fileID: 7192818547680544906, guid: f39a9d103c4129b42a53567f6cd8356a,
+        type: 3}
+      propertyPath: _trackingOriginType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7192818547691413838, guid: f39a9d103c4129b42a53567f6cd8356a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.34
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8706207017106077573, guid: f39a9d103c4129b42a53567f6cd8356a,
         type: 3}
@@ -788,6 +793,10 @@ MonoBehaviour:
   rightHandAnchor: {fileID: 518697558}
   canDraw: 0
   trainController: {fileID: 1141278839}
+  player: {fileID: 1805144552}
+  playerOriginalPostion: {x: 0, y: 0, z: 0}
+  playerOriginalRotation: {x: 0, y: 0, z: 0, w: 0}
+  onTrain: 0
 --- !u!4 &702324310
 Transform:
   m_ObjectHideFlags: 0
@@ -1000,7 +1009,7 @@ MonoBehaviour:
   pathCreator: {fileID: 839433806}
   endOfPathInstruction: 0
   distanceTravelled: 0
-  speed: 5
+  speed: 2
 --- !u!1 &1612519935
 GameObject:
   m_ObjectHideFlags: 0
@@ -1169,6 +1178,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1805144552 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5550776016039436608, guid: f39a9d103c4129b42a53567f6cd8356a,
+    type: 3}
+  m_PrefabInstance: {fileID: 518697554}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1879115182
 Mesh:
   m_ObjectHideFlags: 0

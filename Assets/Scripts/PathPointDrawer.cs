@@ -16,6 +16,11 @@ public class PathPointDrawer : MonoBehaviour
     public Transform rightHandAnchor; // 右手錨點
     public bool canDraw;
     public MRTrainController trainController;
+
+    public Transform player;
+    public Vector3 playerOriginalPostion;
+    public Quaternion playerOriginalRotation;
+    public bool onTrain;
     
 
     // Start is called before the first frame update
@@ -23,6 +28,7 @@ public class PathPointDrawer : MonoBehaviour
     {
         pathPoints = new List<Transform>(); // 初始化路徑點列表
         canDraw = true;
+        onTrain = false;
     }
 
     // Update is called once per frame
@@ -37,6 +43,22 @@ public class PathPointDrawer : MonoBehaviour
         if (OVRInput.GetDown(OVRInput.Button.One, controller)) { // 如果按下空格鍵
             canDraw = false;
             trainController.StartRiding();
+        }
+        if (OVRInput.GetDown(OVRInput.Button.Two, controller)) { // 如果按下空格鍵
+            // TODO : change viewpoint
+            if (onTrain) { // from train to audience
+                player.position = playerOriginalPostion;
+                player.rotation = playerOriginalRotation;
+                player.transform.parent = null;
+                onTrain = false;
+            } else { // from audience to train
+                playerOriginalPostion = player.position;
+                playerOriginalRotation = player.rotation;
+                player.position = trainController.transform.position;
+                player.forward = trainController.transform.forward;
+                player.transform.parent = trainController.transform;
+                onTrain = true;
+            }
         }
     }
 
