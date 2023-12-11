@@ -10,6 +10,9 @@ TagManager:
   - ClimbObject
   - PlayerHand_L
   - PlayerHand_R
+  - Magnet
+  - NoteDetector
+  - PlayerCollider
   layers:
   - Default
   - TransparentFX

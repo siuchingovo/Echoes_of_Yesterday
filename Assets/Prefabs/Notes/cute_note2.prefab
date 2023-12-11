@@ -266,6 +266,8 @@ GameObject:
   - component: {fileID: 5428222603396061402}
   - component: {fileID: 8019106034942451333}
   - component: {fileID: 5227263894948070610}
+  - component: {fileID: 2795381476693778899}
+  - component: {fileID: -3327200374147809110}
   m_Layer: 0
   m_Name: cute_note2
   m_TagString: Untagged
@@ -285,8 +287,8 @@ Transform:
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 5596871356954768255}
   - {fileID: 5596871356954768253}
+  - {fileID: 5596871356954768255}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -331,7 +333,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5596871356955193177}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b252bba90de18446ba31ffcafaae1af, type: 3}
   m_Name: 
@@ -354,6 +356,33 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2795381476693778899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5596871356955193177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2aaa9369694237438e0344a7279a829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
+  speed: 10
+--- !u!114 &-3327200374147809110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5596871356955193177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 023bbfd795001aa4580f3d9fe91faa57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magnet: {fileID: 0}
 --- !u!1 &5596871356955193181
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,7 +413,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5596871356954768249}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &5596871356941591117
 SkinnedMeshRenderer:
@@ -480,5 +509,5 @@ Transform:
   - {fileID: 5596871356954768225}
   - {fileID: 5596871356954768231}
   m_Father: {fileID: 5596871356954768249}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
