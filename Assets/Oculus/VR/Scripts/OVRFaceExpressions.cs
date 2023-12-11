@@ -36,18 +36,21 @@ public class OVRFaceExpressions : MonoBehaviour, IReadOnlyCollection<float>, OVR
     /// </summary>
     public bool FaceTrackingEnabled => OVRPlugin.faceTrackingEnabled;
 
-    [Header("Happy")]
-    public float expression32_value;
+    [Header("Jaw_Drop")]
+    public float expression24_value;
 
-    [Header("Sad")]
-    public float expression30_value;
-    public float expression31_value;
+    // [Header("Happy")]
+    // public float expression32_value;
 
-    [Header("Angry")]
-    public float expression0_value;
-    public float expression1_value;
-    public float expression55_value;
-    public float expression56_value;
+    // [Header("Sad")]
+    // public float expression30_value;
+    // public float expression31_value;
+
+    // [Header("Angry")]
+    // public float expression0_value;
+    // public float expression1_value;
+    // public float expression55_value;
+    // public float expression56_value;
 
     public interface WeightProvider
     {
@@ -168,13 +171,15 @@ public class OVRFaceExpressions : MonoBehaviour, IReadOnlyCollection<float>, OVR
                            _currentFaceState.Status.IsValid;
 
         EyeFollowingBlendshapesValid = ValidExpressions && _currentFaceState.Status.IsEyeFollowingBlendshapesValid;
-        expression32_value = _currentFaceState.ExpressionWeights[32];
-        expression30_value = _currentFaceState.ExpressionWeights[30];
-        expression31_value = _currentFaceState.ExpressionWeights[31];
-        expression0_value = _currentFaceState.ExpressionWeights[0];
-        expression1_value = _currentFaceState.ExpressionWeights[1];
-        expression55_value = _currentFaceState.ExpressionWeights[55];
-        expression56_value = _currentFaceState.ExpressionWeights[56];
+        expression24_value = _currentFaceState.ExpressionWeights[24];
+
+        // expression32_value = _currentFaceState.ExpressionWeights[32];
+        // expression30_value = _currentFaceState.ExpressionWeights[30];
+        // expression31_value = _currentFaceState.ExpressionWeights[31];
+        // expression0_value = _currentFaceState.ExpressionWeights[0];
+        // expression1_value = _currentFaceState.ExpressionWeights[1];
+        // expression55_value = _currentFaceState.ExpressionWeights[55];
+        // expression56_value = _currentFaceState.ExpressionWeights[56];
 
         
     }
