@@ -12,16 +12,16 @@ public class PathPointDrawer : MonoBehaviour
     public PathCreator pathCreator; // 路徑創建器，用於創建貝塞爾曲線路徑
 
     public RoadMeshCreator roadMeshCreator; // 參考 Road Mesh Creator 腳本
-    public OVRInput.Controller controller; // 設置控制器
-    public Transform rightHandAnchor; // 右手錨點
+    // public OVRInput.Controller controller; // 設置控制器
+    // public Transform rightHandAnchor; // 右手錨點
     public bool canDraw;
     public MRTrainController trainController;
 
-    public Transform player;
-    public Vector3 playerOriginalPostion;
-    public Quaternion playerOriginalRotation;
-    public bool onTrain;
-    public float positionUpOffset;
+    // public Transform player;
+    // public Vector3 playerOriginalPostion;
+    // public Quaternion playerOriginalRotation;
+    // public bool onTrain;
+    // public float positionUpOffset;
 
     public EasyMovementController easyMovementController;
     
@@ -31,46 +31,46 @@ public class PathPointDrawer : MonoBehaviour
     {
         pathPoints = new List<Transform>(); // 初始化路徑點列表
         canDraw = true;
-        onTrain = false;
+        // onTrain = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (canDraw && Input.GetKeyDown(KeyCode.Space)) { // 如果按下空格鍵
-            DrawPoint(transform.position); // 呼叫 DrawPoint 方法，繪製路徑點
-        }
-        if (canDraw && OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, controller)) { // 如果按下空格鍵
-            DrawPoint(rightHandAnchor.position); // 呼叫 DrawPoint 方法，繪製路徑點
-        }
-        if (OVRInput.GetDown(OVRInput.Button.One, controller)) { // 如果按下空格鍵
-            canDraw = false;
-            trainController.StartRiding();
-        }
-        if (OVRInput.GetDown(OVRInput.Button.Two, controller)) { // 如果按下空格鍵
-            // TODO : change viewpoint
-            if (onTrain) { // from train to audience
-                player.position = playerOriginalPostion;
-                player.rotation = playerOriginalRotation;
-                player.transform.parent = null;
-                onTrain = false;
-                trainController.transform.Find("Model").gameObject.SetActive(true);
-                easyMovementController.enableControl = true;
-            } else { // from audience to train
-                playerOriginalPostion = player.position;
-                playerOriginalRotation = player.rotation;
-                player.position = trainController.transform.position + trainController.transform.up * positionUpOffset;
-                player.forward = trainController.transform.forward;
-                player.transform.parent = trainController.transform;
-                onTrain = true;
-                trainController.transform.Find("Model").gameObject.SetActive(false);
-                easyMovementController.enableControl = false;
-            }
-        }
+        // if (canDraw && Input.GetKeyDown(KeyCode.Space)) { // 如果按下空格鍵
+        //     DrawPoint(transform.position); // 呼叫 DrawPoint 方法，繪製路徑點
+        // }
+        // if (canDraw && OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, controller)) { // 如果按下空格鍵
+        //     DrawPoint(rightHandAnchor.position); // 呼叫 DrawPoint 方法，繪製路徑點
+        // }
+        // if (OVRInput.GetDown(OVRInput.Button.One, controller)) { // 如果按下空格鍵
+        //     canDraw = false;
+        //     trainController.StartRiding();
+        // }
+        // if (OVRInput.GetDown(OVRInput.Button.Two, controller)) { // 如果按下空格鍵
+        //     // TODO : change viewpoint
+        //     if (onTrain) { // from train to audience
+        //         player.position = playerOriginalPostion;
+        //         player.rotation = playerOriginalRotation;
+        //         player.transform.parent = null;
+        //         onTrain = false;
+        //         trainController.transform.Find("Model").gameObject.SetActive(true);
+        //         easyMovementController.enableControl = true;
+        //     } else { // from audience to train
+        //         playerOriginalPostion = player.position;
+        //         playerOriginalRotation = player.rotation;
+        //         player.position = trainController.transform.position + trainController.transform.up * positionUpOffset;
+        //         player.forward = trainController.transform.forward;
+        //         player.transform.parent = trainController.transform;
+        //         onTrain = true;
+        //         trainController.transform.Find("Model").gameObject.SetActive(false);
+        //         easyMovementController.enableControl = false;
+        //     }
+        // }
     }
 
     // 繪製路徑點的方法
-    void DrawPoint(Vector3 position)
+    public void DrawPoint(Vector3 position)
     {
         // 創建一個新的路徑點遊戲物件並將其實例化到指定位置，並將其作為子物件放入路徑點容器中
         GameObject pathPoint = Instantiate(pathPointPrefab, position, Quaternion.identity, pathPointsHolder);
@@ -80,12 +80,12 @@ public class PathPointDrawer : MonoBehaviour
         BezierPath bezierPath = new BezierPath(pathPoints, isClosed: false, PathSpace.xyz);
         pathCreator.bezierPath = bezierPath; // 將貝塞爾曲線路徑分配給路徑創建器
         print("bezierPath done");
-        // 調用 Road Mesh Creator 中的 PathUpdated 方法以重新生成道路網格
-        roadMeshCreator.TriggerUpdate();
-
         
         // 設置貝塞爾曲線路徑的全局旋轉角度
         bezierPath.GlobalNormalsAngle = 90f;
+
+        // 調用 Road Mesh Creator 中的 PathUpdated 方法以重新生成道路網格
+        roadMeshCreator.TriggerUpdate();
 
         // 添加一個新的路徑點到路徑的末尾（已被註解掉的部分）
         // pathCreator.bezierPath.AddSegmentToEnd(position);
