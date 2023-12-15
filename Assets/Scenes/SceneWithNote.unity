@@ -8696,7 +8696,7 @@ PrefabInstance:
     - target: {fileID: 2698047492333244337, guid: fbfc588a949bb1a42b20e5bddc4cf8cf,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4463783186525425583, guid: fbfc588a949bb1a42b20e5bddc4cf8cf,
         type: 3}
@@ -9642,9 +9642,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   getFacialData: 1
   AvatarFace: {fileID: 1630844111}
-  Lip_corner_Up_L: 0
-  Lip_Down_L: 0
-  Lip_Down_R: 0
+  jawdrop_data: 0
+  magnet: {fileID: 0}
+  value: 0
 --- !u!4 &1813555155
 Transform:
   m_ObjectHideFlags: 0

@@ -111,7 +111,7 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - _cutOffHeight: -0.12
+    - _cutOffHeight: 0.19
     - _threshold: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
