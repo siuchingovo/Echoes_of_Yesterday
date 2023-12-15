@@ -12,7 +12,7 @@ namespace PathCreation.Examples {
 
         const float minSpacing = .1f;
 
-        void Generate () {
+        public void Generate () {
             if (pathCreator != null && prefab != null && holder != null) {
                 DestroyObjects ();
 
@@ -24,8 +24,11 @@ namespace PathCreation.Examples {
                 while (dst < path.length) {
                     Vector3 point = path.GetPointAtDistance (dst);
                     Quaternion rot = path.GetRotationAtDistance (dst);
+                    // Debug.Log(rot * Vector3.forward);
+                    // 向下生成距離長(速度快)、向上生成距離短(速度慢)
                     Instantiate (prefab, point, rot, holder.transform);
-                    dst += spacing;
+                    float yy = (rot * Vector3.forward).y;
+                    dst += spacing * (yy > 0 ? (1.0f - yy) : yy * (-2.0f) + 1.0f);
                 }
             }
         }

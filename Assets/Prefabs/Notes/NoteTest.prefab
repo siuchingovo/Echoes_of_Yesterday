@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2dc7b4138b9c964a8095fca34b9396a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PathPointsHolder: {fileID: 0}
+  roadMeshCreator: {fileID: 0}
+  _pathPlacer: {fileID: 0}
   Note:
   - {fileID: 5435313122900238561, guid: 303104c2c76c94e48a084395141db643, type: 3}
   - {fileID: 5596871356955193177, guid: 8049f0cd62758884a8f2413fa61e8c79, type: 3}
@@ -57,3 +60,4 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 839fd042110ce9f448c4ed356e9d90ba, type: 2}
   - {fileID: 2100000, guid: ad67759f5a394ac419b12288b91cf8cc, type: 2}
   - {fileID: 2100000, guid: 5b1b87863ddf3c448b00787e8834de92, type: 2}
+  trailNum: 4
