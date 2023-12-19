@@ -19,8 +19,10 @@ public class Symbol_control : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        
         if (other.tag == "PlayerHand_R")
         {
+            Debug.Log(other);
             mr_manager.startComic();
         }
     }
