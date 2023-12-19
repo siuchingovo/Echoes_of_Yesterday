@@ -1326,7 +1326,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D:
-        m_Texture: {fileID: 2800000, guid: 47787622523876c40a1fa9bdec4257ef, type: 3}
+        m_Texture: {fileID: 2800000, guid: fa3e6532f2b088240827f22f4eab769a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -8077,7 +8077,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056509748}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9c5d197c7e545e94f88fc2f7052405b3, type: 3}
@@ -12894,7 +12894,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: bd62ee309561f2046b456a3bda176153, type: 3}
+        m_Texture: {fileID: 2800000, guid: c76b1e9b2fc5ff348a1f2020a3162bb8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
