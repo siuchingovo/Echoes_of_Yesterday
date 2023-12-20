@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DrawPathAudio_William.unity
     guid: 31a83754c0c2953419ea43c8ab8b8422
+  - enabled: 1
+    path: Assets/Scenes/SelfDrawTestScene_William.unity
+    guid: 013d9456c3e30a0429838e5c0d284bdc
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 4fca80927cb923c468b2d4f8b73e990f,
       type: 2}
