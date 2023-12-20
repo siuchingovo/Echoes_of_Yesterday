@@ -23,14 +23,14 @@ public class DrawPathSection_1220 : MonoBehaviour
     public RoadMeshCreator roadMeshCreator3;
     // public OVRInput.Controller controller; // 設置控制器
     // // public Transform rightHandAnchor; // 右手錨點
-    // public bool canDraw;
-    // public MRTrainController trainController;
+    public bool canDraw;
+    public MRTrainController trainController;
 
-    // // public Transform player;
-    // // public Vector3 playerOriginalPostion;
-    // // public Quaternion playerOriginalRotation;
-    // // public bool onTrain;
-    // // public float positionUpOffset;
+    public Transform player;
+    public Vector3 playerOriginalPostion;
+    public Quaternion playerOriginalRotation;
+    public bool onTrain;
+    public float positionUpOffset;
 
     // public EasyMovementController easyMovementController;
     
@@ -108,6 +108,30 @@ public class DrawPathSection_1220 : MonoBehaviour
         //         easyMovementController.enableControl = false;
         //     }
         // }
+        if (Input.GetKeyDown(KeyCode.Space)) { // 如果按下空格鍵
+            canDraw = false;
+            trainController.StartRiding();
+        }
+        if (Input.GetKeyDown(KeyCode.B)) { // 如果按下空格鍵
+            // TODO : change viewpoint
+            if (onTrain) { // from train to audience
+                player.position = playerOriginalPostion;
+                player.rotation = playerOriginalRotation;
+                player.transform.parent = null;
+                onTrain = false;
+                trainController.transform.Find("Model").gameObject.SetActive(true);
+                // easyMovementController.enableControl = true;
+            } else { // from audience to train
+                playerOriginalPostion = player.position;
+                playerOriginalRotation = player.rotation;
+                player.position = trainController.transform.position - trainController.transform.right * positionUpOffset;
+                player.forward = trainController.transform.forward;
+                player.transform.parent = trainController.transform;
+                onTrain = true;
+                trainController.transform.Find("Model").gameObject.SetActive(false);
+                // easyMovementController.enableControl = false;
+            }
+        }
     }
 
    
