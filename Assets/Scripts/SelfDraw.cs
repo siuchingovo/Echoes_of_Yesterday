@@ -37,6 +37,7 @@ public class SelfDraw : MonoBehaviour
         pathList = new List<List<Transform>>();
         pathList.Add(path1Points);
         pathList.Add(path2Points);
+        pathList.Add(path3Points);
         
         canDraw = true;
     }
@@ -57,10 +58,10 @@ public class SelfDraw : MonoBehaviour
         if (canDraw && OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, controller)) {
             TrackControllerPosition();
         }
+
         
         // When the Forefinger release the Trigger button
         if (canDraw && OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger, controller)) {
-
             if(canMergePath)
             {
                 MergePath();
@@ -91,11 +92,11 @@ public class SelfDraw : MonoBehaviour
         // Update the position of newestPoint to the position of Controller
         newestPoint.position = rightHandAnchor.position;
         
-        if (pathList.Count < pathNum)
-        {
-            print("No more path to merge");
-            return;
-        }
+        // if (pathList.Count < pathNum)
+        // {
+        //     print("No more path to merge");
+        //     return;
+        // }
         // if the controller collides with the first element in the pathNum th list, then set canMergePath to true
         if(pathList[pathNum - 1][0].GetComponent<Collider>().bounds.Contains(rightHandAnchor.position))
         {
@@ -105,6 +106,7 @@ public class SelfDraw : MonoBehaviour
         }
         else
         {
+            print("can not Merge");
             canMergePath = false;
             pathList[pathNum - 1][0].GetComponent<Renderer>().material.color = Color.white;
         }
