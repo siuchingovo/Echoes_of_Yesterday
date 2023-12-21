@@ -12,7 +12,7 @@ public class SelfDraw : MonoBehaviour
     public List<List<Transform>> pathList;
     public List<Transform> path1Points;
     public List<Transform> path2Points;
-    // public List<Transform> path3Points;
+    public List<Transform> path3Points;
     // public List<Transform> path4Points;
     // public List<Transform> path5Points;
     // public List<Transform> virtualPathPoints;
@@ -31,7 +31,7 @@ public class SelfDraw : MonoBehaviour
     void Start()
     {
         mainPathPoints = new List<Transform>(path1Points);
-        pathNum = 2;
+        pathNum = 3;
         canMergePath = false;
 
         pathList = new List<List<Transform>>();
