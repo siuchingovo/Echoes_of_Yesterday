@@ -99,6 +99,7 @@ public class SelfDraw : MonoBehaviour
         // if the controller collides with the first element in the pathNum th list, then set canMergePath to true
         if(pathList[pathNum - 1][0].GetComponent<Collider>().bounds.Contains(rightHandAnchor.position))
         {
+            print("canMerge");
             canMergePath = true;
             pathList[pathNum - 1][0].GetComponent<Renderer>().material.color = Color.red;
         }
