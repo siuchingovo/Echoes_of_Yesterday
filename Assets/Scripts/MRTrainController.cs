@@ -15,6 +15,7 @@ public class MRTrainController : MonoBehaviour
     {
         isRiding = false;
         distanceTravelled = 0f;
+        StartRiding();
     }
 
     // Update is called once per frame
@@ -24,7 +25,7 @@ public class MRTrainController : MonoBehaviour
         {
             distanceTravelled += speed * Time.deltaTime;
             transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
-            transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
+            transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction) * Quaternion.Euler(90, 0, 90);
         }
     }
     
