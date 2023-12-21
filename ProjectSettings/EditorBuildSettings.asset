@@ -32,6 +32,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SelfDrawTestScene_William.unity
     guid: 013d9456c3e30a0429838e5c0d284bdc
+  - enabled: 1
+    path: Assets/Scenes/MusicPath1220.unity
+    guid: ee8aac213f11345f0a3a45ec564fadb5
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 4fca80927cb923c468b2d4f8b73e990f,
       type: 2}
