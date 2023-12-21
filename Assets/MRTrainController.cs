@@ -27,7 +27,9 @@ namespace PathCreation.Examples {
                 Quaternion r = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
                 // Debug.Log(r.x + " " + r.y + " " + r.z);
                 // 向下衝快、向上爬慢
-                distanceTravelled += speed * (r.z > 0.0f ? (1.0f - r.z) : r.z * (-2.0f) + 1.0f) * Time.deltaTime;
+                // distanceTravelled += speed * (r.z > 0.0f ? (1.0f - r.z) : r.z * (-2.0f) + 1.0f) * Time.deltaTime;
+                distanceTravelled += speed * (r.z > 0.0f ? r.z * (1.5f) + 1.0f : (1.0f + r.z)) * Time.deltaTime;
+
                 transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
                 transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
             }
