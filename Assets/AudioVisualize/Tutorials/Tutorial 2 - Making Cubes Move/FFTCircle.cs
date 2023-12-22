@@ -53,7 +53,7 @@ public class FFTCircle : MonoBehaviour
             LastTimeUpdate += (60f/(54f * 3f / 4f * 3f));
 
             float x = radius * Mathf.Cos(numPointDrawn * deltaTheta);
-            float y = groundLevel + numPointDrawn * deltaHeight * intensity *scale;
+            float y = groundLevel + numPointDrawn * deltaHeight + intensity * scale;
             float z = radius * Mathf.Sin(numPointDrawn * deltaTheta);
 
             Vector3 pathPointPosition = new Vector3 (x, y, z);
