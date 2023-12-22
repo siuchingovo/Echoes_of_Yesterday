@@ -22,12 +22,13 @@ public class MRTrainController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // while (currentPathPointIndex + 1 < pathCreator.bezierPath.NumPoints && pathCreator.path.GetClosestDistanceAlongPath(pathCreator.bezierPath.GetPoint(currentPathPointIndex)) <= distanceTravelled) {
-        //     currentPathPointIndex += 1;
-        // }
+        print(pathCreator.bezierPath.input_points.Count);
+        while (currentPathPointIndex + 1 < pathCreator.bezierPath.input_points.Count && pathCreator.path.GetClosestDistanceAlongPath(pathCreator.bezierPath.input_points[currentPathPointIndex]) <= distanceTravelled) {
+            currentPathPointIndex += 1;
+        }
         if (pathCreator != null && isRiding)
         {
-            // speed = Vector3.Distance(pathCreator.bezierPath.GetPoint(currentPathPointIndex), pathCreator.bezierPath.GetPoint(currentPathPointIndex - 1)) / (60f/(54f * 3f / 4f * 3f));
+            speed = Vector3.Distance(pathCreator.bezierPath.input_points[currentPathPointIndex], pathCreator.bezierPath.input_points[currentPathPointIndex - 1]) / (60f/(54f * 3f / 4f * 3f));
             distanceTravelled += speed * Time.deltaTime;
             transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
             // transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction) * Quaternion.Euler(90, 0, 90);  // 我改回來了ㄏ 

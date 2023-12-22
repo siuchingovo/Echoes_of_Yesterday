@@ -23,6 +23,7 @@ namespace PathCreation
 
 		#region Fields
 
+		public List<Vector3> input_points;
 		[SerializeField, HideInInspector]
 		List<Vector3> points;
 		[SerializeField, HideInInspector]
@@ -80,6 +81,8 @@ namespace PathCreation
 		public BezierPath(IEnumerable<Vector3> points, bool isClosed = false, PathSpace space = PathSpace.xyz)
 		{
 			Vector3[] pointsArray = points.ToArray();
+			input_points = new List<Vector3>();
+			input_points.AddRange(points);
 
 			if (pointsArray.Length < 2)
 			{
