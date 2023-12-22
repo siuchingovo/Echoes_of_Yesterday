@@ -31,7 +31,7 @@ public class SelfDraw : MonoBehaviour
     void Start()
     {
         mainPathPoints = new List<Transform>(path1Points);
-        pathNum = 3;
+        pathNum = 2;
         canMergePath = false;
 
         pathList = new List<List<Transform>>();
@@ -40,6 +40,8 @@ public class SelfDraw : MonoBehaviour
         pathList.Add(path3Points);
         
         canDraw = true;
+
+        UpdatePath();
     }
 
 
@@ -92,11 +94,11 @@ public class SelfDraw : MonoBehaviour
         // Update the position of newestPoint to the position of Controller
         newestPoint.position = rightHandAnchor.position;
         
-        // if (pathList.Count < pathNum)
-        // {
-        //     print("No more path to merge");
-        //     return;
-        // }
+        if (pathList.Count < pathNum)
+        {
+            print("No more path to merge");
+            return;
+        }
         // if the controller collides with the first element in the pathNum th list, then set canMergePath to true
         if(pathList[pathNum - 1][0].GetComponent<Collider>().bounds.Contains(rightHandAnchor.position))
         {
