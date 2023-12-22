@@ -22,7 +22,7 @@ public class MRTrainController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(pathCreator.bezierPath.input_points.Count);
+        // print(pathCreator.bezierPath.input_points.Count);
         while (currentPathPointIndex + 1 < pathCreator.bezierPath.input_points.Count && pathCreator.path.GetClosestDistanceAlongPath(pathCreator.bezierPath.input_points[currentPathPointIndex]) <= distanceTravelled) {
             currentPathPointIndex += 1;
         }
