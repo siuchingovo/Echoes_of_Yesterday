@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 2795381476693778899}
   - component: {fileID: -3327200374147809110}
   m_Layer: 0
-  m_Name: cute_note2
+  m_Name: sixteenth_note
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -18,6 +18,9 @@ namespace PathCreation.Examples {
             isRiding = false;
             distanceTravelled = 0f;
             StartRiding();
+            speed = pathCreator.path.length / 138f;
+            // len = pathCreator.path.length;
+            // Debug.Log(pathCreator.path.length);
         }
 
         // Update is called once per frame
@@ -28,7 +31,8 @@ namespace PathCreation.Examples {
                 Quaternion r = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
                 // Debug.Log(r.x + " " + r.y + " " + r.z);
                 // 向下衝快、向上爬慢
-                distanceTravelled += speed * (r.z > 0.0f ? (1.0f - r.z) : r.z * (-2.0f) + 1.0f) * Time.deltaTime;
+                distanceTravelled += speed * Time.deltaTime;
+                // distanceTravelled += speed * (r.z > 0.0f ? (1.0f - r.z) : r.z * (-2.0f) + 1.0f) * Time.deltaTime;
                 transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
                 transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction) * Quaternion.Euler(90, 0, 90);
             }

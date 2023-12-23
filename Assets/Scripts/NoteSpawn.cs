@@ -18,48 +18,43 @@ namespace PathCreation.Examples {
         private float[] beatPos = new float[2];
         private bool show = false;
         public int trailNum = 4;
+        public int NoteID;
+        private GameObject clone;
         // Start is called before the first frame update
         void Start()
         {
             // roadMeshCreator = _roadMeshCreator.GetComponent<RoadMeshCreator>();
             trails = new float[trailNum];
-            float trailWidth = roadMeshCreator.roadWidth / trailNum;
-            float _start = (trailWidth - roadMeshCreator.roadWidth) / 2.0f;
+            float trailWidth = roadMeshCreator.roadWidth * 2 / trailNum;
+            float _start = (trailWidth - roadMeshCreator.roadWidth * 2) / 2.0f;
             for(int i = 0; i < trailNum; i++){
                 trails[i] = _start + trailWidth * i;
             }
-            // trails[0] = 0.2f;
-            // trails[1] = 0.0f;
-            // trails[2] = -0.2f;
             playerCamera = GameObject.Find("OVRCameraRig");
             show = false;
-
-            Debug.Log(_pathPlacer.spacing);
-            // trails[3] = -0.3f;
-            // beatPos[0] = -0.2f;
-            // beatPos[1] = 0.3f;
-            // for(int i = 0; i < 2; i++){
-                
-                // clone.transform.localRotation = new Quaternion(0.0f,-0.70710682f,0f,0.707106829f);
-                // clone.transform.localScale = new Vector3(0.3f, 6f, 0.3f);
-
-            // }
+            if( NoteID == 7 ) NoteID = 1;
+            else if ( NoteID > 7) return;
+            clone = Instantiate(Note[NoteID], new Vector3(0, 0, 0), Quaternion.identity, this.transform); //new Quaternion(0.0f,-0.70710682f,0f,0.707106829f));
+            clone.transform.localPosition = new Vector3(-0.2f, trails[Random.Range(0, trailNum)], 0.0f);
+            clone.transform.localRotation = clone.transform.localRotation  * Quaternion.Euler(90, 0, 90);
+            // clone.transform.localPosition = new Vector3(trails[Random.Range(0, trailNum)], 0.2f, 0.0f);
+            clone.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = NoteID == 1 ? Mat[0] : Mat[1];
+            clone.transform.GetChild(0).gameObject.SetActive(false);
         }
 
         // Update is called once per frame
         void Update()
         {
+            if(NoteID == 7) return;
             if(Vector3.Distance(playerCamera.transform.position, transform.position) < 5 && !show){
                 show = true;
-                GameObject clone = Instantiate(Note[Random.Range(0, 7)], new Vector3(0, 0, 0), Quaternion.identity); //new Quaternion(0.0f,-0.70710682f,0f,0.707106829f));
-                clone.transform.parent = this.transform;
-                clone.transform.localPosition = new Vector3(-0.2f, trails[Random.Range(0, trailNum)], 0.0f);
-                // clone.transform.localPosition = new Vector3(trails[Random.Range(0, trailNum)], 0.2f, 0.0f);
-                clone.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = Mat[Random.Range(0, 4)];
-            } else if (Vector3.Distance(playerCamera.transform.position, transform.position) > 5 && show){
-                Object.Destroy(this.transform.GetChild(0).gameObject);
-                show = false;
-            }
+                clone.transform.GetChild(0).gameObject.SetActive(true);
+                // clone.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = Mat[Random.Range(0, 4)];
+            } 
+            // else if (Vector3.Distance(playerCamera.transform.position, transform.position) > 100 && show){
+            //     Object.Destroy(this.transform.GetChild(0).gameObject);
+            //     show = false;
+            // }
             // Debug.Log(Vector3.Distance(playerCamera.transform.position, transform.position));
             
         }
