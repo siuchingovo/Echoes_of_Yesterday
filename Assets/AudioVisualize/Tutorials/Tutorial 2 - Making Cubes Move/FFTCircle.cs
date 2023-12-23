@@ -46,7 +46,7 @@ public class FFTCircle : MonoBehaviour
         print(currentMusicTime);
 
         // if(LastTimeUpdate + (60f/(54f * 3f / 4f * 3f)) <= currentMusicTime )
-        if(LastTimeUpdate + (60f/(54f * 3f / 4f * 3f)) <= currentMusicTime && currentMusicTime >= 0f && currentMusicTime <= 28f )
+        if(LastTimeUpdate + (60f/(54f * 3f / 4f * 3f)) <= currentMusicTime && currentMusicTime >= 0f && currentMusicTime <= 138f )
         {
             // LastTimeUpdate = (float)AudioSettings.dspTime;
             numPointDrawn += 1;

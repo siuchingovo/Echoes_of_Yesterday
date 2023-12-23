@@ -26,6 +26,8 @@ public class DrawPathSection_yun : MonoBehaviour
     public bool canDraw;
     public MRTrainController trainController;
 
+    public PathPlacer_yun pathPlacer;
+
     public Transform player;
     public Vector3 playerOriginalPostion;
     public Quaternion playerOriginalRotation;
@@ -60,7 +62,7 @@ public class DrawPathSection_yun : MonoBehaviour
 
         BezierPath bezierPath1 = new BezierPath(section1List, isClosed: false, PathSpace.xyz);
         pathCreator1.bezierPath = bezierPath1; 
-        // bezierPath1.GlobalNormalsAngle = 90f;
+        bezierPath1.GlobalNormalsAngle = 270f;
 
         // BezierPath bezierPath2 = new BezierPath(section2List, isClosed: false, PathSpace.xyz);
         // pathCreator2.bezierPath = bezierPath2; 
@@ -71,6 +73,7 @@ public class DrawPathSection_yun : MonoBehaviour
         // // bezierPath3.GlobalNormalsAngle = 90f;
 
         roadMeshCreator1.TriggerUpdate();
+        // pathPlacer.Generate();
         // roadMeshCreator2.TriggerUpdate();
         // roadMeshCreator3.TriggerUpdate();
     }

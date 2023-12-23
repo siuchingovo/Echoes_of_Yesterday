@@ -53,6 +53,7 @@ namespace PathCreation.Examples {
             bool usePathNormals = !(path.space == PathSpace.xyz && flattenSurface);
 
             for (int i = 0; i < path.NumPoints; i++) {
+                // Vector3 localUp = new Vector3(0, 1, 0); //(usePathNormals) ? Vector3.Cross (path.GetTangent (i), path.GetNormal (i)) : path.up;
                 Vector3 localUp = (usePathNormals) ? Vector3.Cross (path.GetTangent (i), path.GetNormal (i)) : path.up;
                 Vector3 localRight = (usePathNormals) ? path.GetNormal (i) : Vector3.Cross (localUp, path.GetTangent (i));
 

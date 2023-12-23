@@ -44,14 +44,14 @@ public class DrawPathSection_1220 : MonoBehaviour
         {
             section1List.Add(section1Transform.GetChild(i));
         }
-        for(int i=0;i<section2Transform.childCount;i++)
-        {
-            section2List.Add(section2Transform.GetChild(i));
-        }
-        for(int i=0;i<section3Transform.childCount;i++)
-        {
-            section3List.Add(section3Transform.GetChild(i));
-        }
+        // for(int i=0;i<section2Transform.childCount;i++)
+        // {
+        //     section2List.Add(section2Transform.GetChild(i));
+        // }
+        // for(int i=0;i<section3Transform.childCount;i++)
+        // {
+        //     section3List.Add(section3Transform.GetChild(i));
+        // }
 
         // canDraw = true;
         // onTrain = false;
@@ -62,17 +62,17 @@ public class DrawPathSection_1220 : MonoBehaviour
         pathCreator1.bezierPath = bezierPath1; 
         // bezierPath1.GlobalNormalsAngle = 90f;
 
-        BezierPath bezierPath2 = new BezierPath(section2List, isClosed: false, PathSpace.xyz);
-        pathCreator2.bezierPath = bezierPath2; 
-        // bezierPath2.GlobalNormalsAngle = 90f;
+        // BezierPath bezierPath2 = new BezierPath(section2List, isClosed: false, PathSpace.xyz);
+        // pathCreator2.bezierPath = bezierPath2; 
+        // // bezierPath2.GlobalNormalsAngle = 90f;
 
-        BezierPath bezierPath3 = new BezierPath(section3List, isClosed: false, PathSpace.xyz);
-        pathCreator3.bezierPath = bezierPath3; 
+        // BezierPath bezierPath3 = new BezierPath(section3List, isClosed: false, PathSpace.xyz);
+        // pathCreator3.bezierPath = bezierPath3; 
         // bezierPath3.GlobalNormalsAngle = 90f;
 
         roadMeshCreator1.TriggerUpdate();
-        roadMeshCreator2.TriggerUpdate();
-        roadMeshCreator3.TriggerUpdate();
+        // roadMeshCreator2.TriggerUpdate();
+        // roadMeshCreator3.TriggerUpdate();
     }
 
     // Update is called once per frame

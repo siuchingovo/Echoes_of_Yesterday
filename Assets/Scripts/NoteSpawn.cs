@@ -38,8 +38,9 @@ namespace PathCreation.Examples {
             else if ( NoteID > 7 ) return;
             score = noteScores[NoteID];
             clone = Instantiate(Note[NoteID], new Vector3(0, 0, 0), Quaternion.identity, this.transform); //new Quaternion(0.0f,-0.70710682f,0f,0.707106829f));
-            clone.transform.localPosition = new Vector3(-0.2f, trails[Random.Range(0, trailNum)], 0.0f);
-            clone.transform.localRotation = clone.transform.localRotation  * Quaternion.Euler(90, 0, 90);
+            clone.transform.localRotation = Quaternion.Euler(180, 0, 90); // clone.transform.localRotation * Quaternion.Euler(90, 0, 90);
+            clone.transform.localPosition = new Vector3(-0.3f, trails[Random.Range(0, trailNum)], 0.0f);
+
             if ( NoteID != 1 ) clone.transform.localScale = clone.transform.localScale * 2;
             // clone.transform.localPosition = new Vector3(trails[Random.Range(0, trailNum)], 0.2f, 0.0f);
             clone.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = NoteID == 1 ? Mat[0] : Mat[1];
@@ -55,10 +56,11 @@ namespace PathCreation.Examples {
                 clone.transform.GetChild(0).gameObject.SetActive(true);
                 // clone.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = Mat[Random.Range(0, 4)];
             } 
-            // else if (Vector3.Distance(playerCamera.transform.position, transform.position) > 100 && show){
-            //     Object.Destroy(this.transform.GetChild(0).gameObject);
-            //     show = false;
-            // }
+            else if (Vector3.Distance(playerCamera.transform.position, transform.position) > 100 && show){
+                // Object.Destroy(this.transform.GetChild(0).gameObject);
+                clone.transform.GetChild(0).gameObject.SetActive(false);
+                show = false;
+            }
             // Debug.Log(Vector3.Distance(playerCamera.transform.position, transform.position));
             
         }
