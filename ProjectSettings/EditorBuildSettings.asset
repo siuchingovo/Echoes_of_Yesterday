@@ -6,17 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/Scene1(Old).unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 0
     path: Assets/Scenes/DrawPath.unity
     guid: 28374934de43f48849593a4b7b8b798c
   - enabled: 0
     path: Assets/PathCreator/Examples/Scenes/Follow Path.unity
     guid: c1e712ad623461e418f182144cf61384
-  - enabled: 1
-    path: Assets/Scenes/SceneWithNote.unity
-    guid: 45cd8d716aea11f488de6214d6bb086c
   - enabled: 1
     path: Assets/Scenes/Scene1_PianoRoom.unity
     guid: fc48d803186d05f49bdf2542af27f17b
