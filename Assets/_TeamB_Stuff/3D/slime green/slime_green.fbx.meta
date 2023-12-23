@@ -3,7 +3,12 @@ guid: f37074263973386458753853b279d1f3
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: slime_mat
+    second: {fileID: 2100000, guid: 10a650ea87dd0b240ad3568b59214ed8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

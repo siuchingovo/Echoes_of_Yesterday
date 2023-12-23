@@ -10725,7 +10725,7 @@ GameObject:
   - component: {fileID: 1722168833}
   - component: {fileID: 1722168835}
   m_Layer: 0
-  m_Name: MagicRoom_Manager
+  m_Name: PianoRoom_Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
