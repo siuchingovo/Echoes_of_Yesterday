@@ -6,25 +6,20 @@ using PathCreation.Examples;
 
 public class DrawOnePath : MonoBehaviour
 {
-    public GameObject pathPointPrefab;
-    public List<Transform> mainPathPoints;
+    public List<Transform> section3List;
     public List<Transform> touchPathPoints;
     private int touchIdx;
     public List<Transform> tmpPathPoints;
-    public Transform pathPointsHolder;
     public PathCreator pathCreator;
-    public RoadMeshCreator roadMeshCreator;
+    public RoadMeshCreator roadMeshCreator3;
 
     public OVRInput.Controller controller;
     public Transform rightHandAnchor;
 
-    public bool canDraw;
     // Start is called before the first frame update
     void Start()
     {
-        // mainPathPoints = new List<Transform>();
-        // touchPathPoints = new List<Transform>();
-        canDraw = false;
+        touchIdx = 0;
     }
 
     // Update is called once per frame
@@ -39,6 +34,7 @@ public class DrawOnePath : MonoBehaviour
         // When the Forefinger release the Trigger button
         if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger, controller)) {
             print("====GetUp and UpdatePath");
+            tmpPathPoints = new List<Transform>(section3List.GetRange(0, touchIdx+1));
             UpdatePath();
             
         }
@@ -53,9 +49,8 @@ public class DrawOnePath : MonoBehaviour
             {
                 touchPathPoints[i].GetComponent<Renderer>().material.color = Color.green;
                 print("=======Inside touchPathPoints[i]" + touchPathPoints[i]);
-                //Use touchPathPoints[i] to get the index in mainPathPoints
-                touchIdx = mainPathPoints.IndexOf(touchPathPoints[i]);
-                tmpPathPoints = new List<Transform>(mainPathPoints.GetRange(0, touchIdx+1));
+                //Use touchPathPoints[i] to get the index in section3List
+                touchIdx = section3List.IndexOf(touchPathPoints[i]);
             }
             else
             {
@@ -73,6 +68,6 @@ public class DrawOnePath : MonoBehaviour
        
         bezierPath.GlobalNormalsAngle = 90f;
 
-        roadMeshCreator.TriggerUpdate();
+        roadMeshCreator3.TriggerUpdate();
     }
 }
