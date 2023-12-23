@@ -18,7 +18,7 @@ namespace PathCreation.Examples {
             isRiding = false;
             distanceTravelled = 0f;
             StartRiding();
-            speed = pathCreator.path.length / 138f;
+            speed = pathCreator.path.length / 28f;
             // len = pathCreator.path.length;
             // Debug.Log(pathCreator.path.length);
         }

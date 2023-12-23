@@ -28,7 +28,7 @@ namespace PathCreation.Examples {
 
                 VertexPath path = pathCreator.path;
 
-                spacing = pathCreator.path.length / 138f / 2;
+                spacing = pathCreator.path.length / 28f / 2;
                 // spacing = Mathf.Max(minSpacing, spacing);
                 float dst = 0;
                 int count = 0;

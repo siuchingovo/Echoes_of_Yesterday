@@ -34,9 +34,9 @@ public class AudioAnalyzer_yun : MonoBehaviour
 
         if (counter % frameInterval == 0)
         {
-            if(x >= 2 * Mathf.PI) rev = -1.0f;
-            else if(x >= Mathf.PI) rev = 1.0f;
-            x += Mathf.PI / 9;
+            // if(x >= 2 * Mathf.PI) rev = -1.0f;
+            // else if(x >= Mathf.PI) rev = 1.0f;
+            x += Mathf.PI / 18;
             y += 0.2f;
             audioPosition = new Vector3(6 * Mathf.Sin(x) , objectHeight + y , 6 * Mathf.Cos(x));
             // audioPosition = new Vector3(audioPosition.x + 1, objectHeight, audioPosition.z);

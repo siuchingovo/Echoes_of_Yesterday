@@ -19,6 +19,8 @@ namespace PathCreation.Examples {
         private bool show = false;
         public int trailNum = 4;
         public int NoteID;
+        public int score;
+        private int[] noteScores = { 2, 1, 2, 3, 6, 9, 12 };
         private GameObject clone;
         // Start is called before the first frame update
         void Start()
@@ -33,10 +35,12 @@ namespace PathCreation.Examples {
             playerCamera = GameObject.Find("OVRCameraRig");
             show = false;
             if( NoteID == 7 ) NoteID = 1;
-            else if ( NoteID > 7) return;
+            else if ( NoteID > 7 ) return;
+            score = noteScores[NoteID];
             clone = Instantiate(Note[NoteID], new Vector3(0, 0, 0), Quaternion.identity, this.transform); //new Quaternion(0.0f,-0.70710682f,0f,0.707106829f));
             clone.transform.localPosition = new Vector3(-0.2f, trails[Random.Range(0, trailNum)], 0.0f);
             clone.transform.localRotation = clone.transform.localRotation  * Quaternion.Euler(90, 0, 90);
+            if ( NoteID != 1 ) clone.transform.localScale = clone.transform.localScale * 2;
             // clone.transform.localPosition = new Vector3(trails[Random.Range(0, trailNum)], 0.2f, 0.0f);
             clone.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = NoteID == 1 ? Mat[0] : Mat[1];
             clone.transform.GetChild(0).gameObject.SetActive(false);
