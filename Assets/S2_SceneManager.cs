@@ -19,4 +19,9 @@ public class S2_SceneManager : MonoBehaviour
     {
         
     }
+
+    public void playEnding()
+    {
+        ending_timeline.Play();
+    }
 }
