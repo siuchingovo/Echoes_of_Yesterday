@@ -61,6 +61,7 @@ public class TouchDrawPath : MonoBehaviour
         for(int i=0;i<section3Transform.childCount;i++)
         {
             section3List.Add(section3Transform.GetChild(i));
+            section3Transform.GetChild(i).GetComponent<Renderer>().enabled = false;
         }
 
         // canDraw = true;
@@ -87,12 +88,39 @@ public class TouchDrawPath : MonoBehaviour
         // =============William's code================
         sec3Idx = 0;
         touchIdx = 0;
+        touchPathPoints[0].GetComponent<Renderer>().enabled = true;
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        // =============William's code================
+        
+        // When the Forefinger is holding and pressing the Trigger button
+        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, controller)) {
+            TrackControllerPosition();
+        }
+
+        // When the Forefinger release the Trigger button
+        if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger, controller)) {
+            print("====GetUp and UpdatePath");
+            for (int i = 0; i < touchPathPoints.Count; i++)
+            {
+                if(i == touchIdx+1)
+                {
+                    touchPathPoints[i].GetComponent<Renderer>().enabled = true;
+                }
+                else
+                {
+                    touchPathPoints[i].GetComponent<Renderer>().enabled = false;
+                }
+            }
+            tmpPathPoints = new List<Transform>(section3List.GetRange(0, sec3Idx+1));
+            UpdatePath();
+            
+        }
+
         // if (canDraw && Input.GetKeyDown(KeyCode.Space)) { // 如果按下空格鍵
         //     DrawPoint(transform.position); // 呼叫 DrawPoint 方法，繪製路徑點
         // }
@@ -123,48 +151,32 @@ public class TouchDrawPath : MonoBehaviour
         //         easyMovementController.enableControl = false;
         //     }
         // }
-        if (Input.GetKeyDown(KeyCode.Space) || (OVRInput.Get(OVRInput.Button.One, controller))) { // 如果按下空格鍵 or A
-            canDraw = false;
-            trainController.StartRiding();
-        }
 
-        if (Input.GetKeyDown(KeyCode.B) || (OVRInput.Get(OVRInput.Button.Two, controller))) { // 如果按下B either on controller or keyboard
-            // TODO : change viewpoint
-            if (onTrain) { // from train to audience
-                player.position = playerOriginalPostion;
-                player.rotation = playerOriginalRotation;
-                player.transform.parent = null;
-                onTrain = false;
-                trainController.transform.Find("Model").gameObject.SetActive(true);
-                // easyMovementController.enableControl = true;
-            } else { // from audience to train
-                playerOriginalPostion = player.position;
-                playerOriginalRotation = player.rotation;
-                player.position = trainController.transform.position - trainController.transform.right * positionUpOffset;
-                player.forward = trainController.transform.forward;
-                player.transform.parent = trainController.transform;
-                onTrain = true;
-                trainController.transform.Find("Model").gameObject.SetActive(false);
-                // easyMovementController.enableControl = false;
-            }
-        }
+        // if (Input.GetKeyDown(KeyCode.Space) || (OVRInput.Get(OVRInput.Button.One, controller))) { // 如果按下空格鍵 or A
+        //     canDraw = false;
+        //     trainController.StartRiding();
+        // }
 
-        // =============William's code================
-        
-        // When the Forefinger is holding and pressing the Trigger button
-        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, controller)) {
-            TrackControllerPosition();
-        }
-
-        // When the Forefinger release the Trigger button
-        if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger, controller)) {
-            print("====GetUp and UpdatePath");
-            // touchPathPoints[touchIdx].SetActive(false);
-            // touchPathPoints[touchIdx+1].SetActive(true);
-            tmpPathPoints = new List<Transform>(section3List.GetRange(0, sec3Idx+1));
-            UpdatePath();
-            
-        }
+        // if (Input.GetKeyDown(KeyCode.B) || (OVRInput.Get(OVRInput.Button.Two, controller))) { // 如果按下B either on controller or keyboard
+        //     // TODO : change viewpoint
+        //     if (onTrain) { // from train to audience
+        //         player.position = playerOriginalPostion;
+        //         player.rotation = playerOriginalRotation;
+        //         player.transform.parent = null;
+        //         onTrain = false;
+        //         trainController.transform.Find("Model").gameObject.SetActive(true);
+        //         // easyMovementController.enableControl = true;
+        //     } else { // from audience to train
+        //         playerOriginalPostion = player.position;
+        //         playerOriginalRotation = player.rotation;
+        //         player.position = trainController.transform.position - trainController.transform.right * positionUpOffset;
+        //         player.forward = trainController.transform.forward;
+        //         player.transform.parent = trainController.transform;
+        //         onTrain = true;
+        //         trainController.transform.Find("Model").gameObject.SetActive(false);
+        //         // easyMovementController.enableControl = false;
+        //     }
+        // }
 
     }
     // ===================William's code===================
@@ -172,7 +184,7 @@ public class TouchDrawPath : MonoBehaviour
     {    
         print("====TrackControllerPosition");
         //check which gameobject in the touchPathPoints collides with  the controller collides, then change the color of the gameobject to green
-        for (int i = 0; i < touchPathPoints.Count; i++)
+        for (int i = touchIdx; i < touchPathPoints.Count; i++)
         {
             if(touchPathPoints[i].GetComponent<Collider>().bounds.Contains(rightHandAnchor.position))
             {
@@ -196,7 +208,7 @@ public class TouchDrawPath : MonoBehaviour
         pathCreator3.bezierPath = bezierPath; 
         print("Update bezierPath done");
        
-        bezierPath.GlobalNormalsAngle = 90f;
+        // bezierPath.GlobalNormalsAngle = 90f;
 
         roadMeshCreator3.TriggerUpdate();
     }

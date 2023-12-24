@@ -555,9 +555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb5adbcbc6e942849ad32bb9c6f32a97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathPointPrefab: {fileID: 4026881223492159092, guid: 7fb74574217ba4f37a2f198944ebe396,
-    type: 3}
-  mainPathPoints:
+  section3List:
   - {fileID: 1347247420}
   - {fileID: 1523718893}
   - {fileID: 418798952}
@@ -573,12 +571,10 @@ MonoBehaviour:
   - {fileID: 2050431544}
   - {fileID: 1023762294}
   tmpPathPoints: []
-  pathPointsHolder: {fileID: 1483317068}
   pathCreator: {fileID: 389848204}
-  roadMeshCreator: {fileID: 1517332743}
+  roadMeshCreator3: {fileID: 1517332743}
   controller: 2
   rightHandAnchor: {fileID: 2085277358}
-  canDraw: 0
 --- !u!1 &46368645
 GameObject:
   m_ObjectHideFlags: 0
