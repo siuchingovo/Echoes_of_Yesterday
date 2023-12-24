@@ -16,7 +16,7 @@ public class SubtitleUI_Control : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void setSubtitle(int id)

@@ -45,7 +45,7 @@ TagManager:
   - DrawBounds
   - 
   - InteractObj
-  - 
+  - GameUI
   - 
   - Teleport
   m_SortingLayers:
