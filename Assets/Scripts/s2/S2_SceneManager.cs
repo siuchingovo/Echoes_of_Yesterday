@@ -9,6 +9,8 @@ public class S2_SceneManager : MonoBehaviour
     [Header("Timeline")]
     public PlayableDirector ending_timeline;
 
+    public magicSymbol_ending_control endingControl;
+
     void Start()
     {
         
@@ -18,10 +20,20 @@ public class S2_SceneManager : MonoBehaviour
     void Update()
     {
         
+
+        //Shortcut for s2====================
+        if (Input.GetKey(KeyCode.Alpha5))
+        {
+            //Play Ending====================
+            endingControl.endGame();
+        }
     }
 
     public void playEnding()
     {
         ending_timeline.Play();
     }
+
+    
+    
 }

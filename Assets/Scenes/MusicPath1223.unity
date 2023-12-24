@@ -5675,7 +5675,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1276831079}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &591243744
+--- !u!114 &591243745
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5684,26 +5684,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 591243739}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94dc0f8fe55335a41adcc22b4d897995, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: 1
-  movementSpeed: 5
---- !u!114 &591243745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 591243739}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7590e85e07600b44aba49bfb1c4c14c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  headTransform: {fileID: 591243743}
-  rightController: 1
-  enableControl: 0
+  headTransform: {fileID: 1276831080}
+  rightController: 2
+  enableControl: 1
 --- !u!1 &613495322
 GameObject:
   m_ObjectHideFlags: 0
@@ -11229,8 +11215,19 @@ PrefabInstance:
       propertyPath: _trackingOriginType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7192818547691322728, guid: f39a9d103c4129b42a53567f6cd8356a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f39a9d103c4129b42a53567f6cd8356a, type: 3}
+--- !u!4 &1276831080 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7192818547691413832, guid: f39a9d103c4129b42a53567f6cd8356a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1276831079}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1285672964
 GameObject:
   m_ObjectHideFlags: 0
@@ -16348,13 +16345,13 @@ MonoBehaviour:
   positionUpOffset: 1
   touchPathPoints:
   - {fileID: 1084201436}
-  - {fileID: 116616527}
-  - {fileID: 2084657226}
-  - {fileID: 1954921685}
-  - {fileID: 824108678}
-  - {fileID: 111123198}
-  - {fileID: 1127837372}
-  - {fileID: 155816673}
+  - {fileID: 998370239}
+  - {fileID: 1757817380}
+  - {fileID: 1938345716}
+  - {fileID: 939242057}
+  - {fileID: 1653692821}
+  - {fileID: 1220869355}
+  - {fileID: 2141489486}
   tmpPathPoints: []
   controller: 2
   rightHandAnchor: {fileID: 553324576}

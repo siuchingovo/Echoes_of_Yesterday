@@ -5,8 +5,6 @@ public class SelfDrawMovement : MonoBehaviour
     public OVRInput.Controller controller;
     public float movementSpeed = 3.0f;
 
-    private bool isWithinBounds;
-
     void Update()
     {
         Vector3 headForward = transform.forward.normalized;
