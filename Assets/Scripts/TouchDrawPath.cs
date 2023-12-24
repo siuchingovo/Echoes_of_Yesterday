@@ -128,7 +128,7 @@ public class TouchDrawPath : MonoBehaviour
                     onTrain = true;
                     magicSymbol_ending.SetActive(true);
                     easyMovementController.enableControl = false;
-
+                    m_AudioSource.loop = false;
                     m_AudioSource.Play();
                     m_AudioSource.volume = 1.0f;
                     // easyMovementController.enableControl = false;

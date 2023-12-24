@@ -39,7 +39,7 @@ namespace PathCreation.Examples {
             score = noteScores[NoteID];
             clone = Instantiate(Note[NoteID], new Vector3(0, 0, 0), Quaternion.identity, this.transform); //new Quaternion(0.0f,-0.70710682f,0f,0.707106829f));
             clone.transform.localRotation = Quaternion.Euler(180, 0, 90); // clone.transform.localRotation * Quaternion.Euler(90, 0, 90);
-            clone.transform.localPosition = new Vector3(-0.9f, trails[Random.Range(0, trailNum)], 0.0f);
+            clone.transform.localPosition = new Vector3(-0.8f, trails[Random.Range(0, trailNum)], 0.0f);
 
             if ( NoteID != 1 ) clone.transform.localScale = clone.transform.localScale * 2;
             // clone.transform.localPosition = new Vector3(trails[Random.Range(0, trailNum)], 0.2f, 0.0f);

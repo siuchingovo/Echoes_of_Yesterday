@@ -4890,7 +4890,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 930c519ff66813143af63c5e2c90dc18, type: 3}
+        m_Texture: {fileID: 2800000, guid: 79ae1f4bf437e06469256c2eb5cb874d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -12544,6 +12544,7 @@ MonoBehaviour:
   headTransform: {fileID: 182827656}
   rightController: 2
   enableControl: 0
+  moveSpeed: 0.05
 --- !u!1001 &2024704565
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12968,7 +12969,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_LocalPosition.y
