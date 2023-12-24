@@ -6,6 +6,7 @@ public class NotesMove : MonoBehaviour
 {
     NotesControl NotesControl;
     public Magnet magnet;
+    public PathCreation.Examples.PathPlacer_yun _path;
     bool magnetActive;
 
     void Start()
@@ -30,6 +31,8 @@ public class NotesMove : MonoBehaviour
         {
             if (other.gameObject.tag == "PlayerCollider")
             {
+                _path = GameObject.FindGameObjectWithTag("NotesHolder").GetComponent<PathCreation.Examples.PathPlacer_yun>();
+                _path.TotalScore += transform.parent.GetComponent<PathCreation.Examples.NoteSpawn>().score;
                 Destroy(gameObject);
             }
             else if (other.gameObject.tag == "NoteDetector")

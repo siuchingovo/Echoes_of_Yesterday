@@ -15,6 +15,7 @@ TagManager:
   - PlayerCollider
   - DrawBounds
   - TouchPoints
+  - NotesHolder
   layers:
   - Default
   - TransparentFX

@@ -16,7 +16,7 @@ public class MRTrainController : MonoBehaviour
     {
         isRiding = false;
         distanceTravelled = 0f;
-        StartRiding();
+        // StartRiding();
     }
 
     // Update is called once per frame

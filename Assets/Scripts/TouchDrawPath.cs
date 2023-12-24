@@ -6,65 +6,69 @@ using PathCreation.Examples;
 
 public class TouchDrawPath : MonoBehaviour
 {
-    public GameObject pathPointPrefab; // 路徑點的預置物件
-    public List<Transform> pathPointsList; // 存儲路徑點的列表
-    public PathCreator pathCreator1; // 路徑創建器，用於創建貝塞爾曲線路徑
-    public Transform section1Transform;
-    public List<Transform> section1List;
-    public PathCreator pathCreator2;
-    public Transform section2Transform;
-    public List<Transform> section2List;
-    public PathCreator pathCreator3;
-    public Transform section3Transform;
-    public List<Transform> section3List;
+    // public GameObject pathPointPrefab; // 路徑點的預置物件
+    // public List<Transform> pathPointsList; // 存儲路徑點的列表
+    // public PathCreator pathCreator1; // 路徑創建器，用於創建貝塞爾曲線路徑
+    // public Transform section1Transform;
+    // public List<Transform> section1List;
+    // public PathCreator pathCreator2;
+    // public Transform section2Transform;
+    // public List<Transform> section2List;
+    public PathCreator pathCreator;
+    public Transform pathTransform;
+    public List<Transform> pathPointList;
 
-    public RoadMeshCreator roadMeshCreator1; // 參考 Road Mesh Creator 腳本
-    public RoadMeshCreator roadMeshCreator2;
-    public RoadMeshCreator roadMeshCreator3;
+    // public RoadMeshCreator roadMeshCreator1; // 參考 Road Mesh Creator 腳本
+    // public RoadMeshCreator roadMeshCreator2;
+    public RoadMeshCreator roadMeshCreator;
     // public OVRInput.Controller controller; // 設置控制器
     // // public Transform rightHandAnchor; // 右手錨點
     public bool canDraw;
-    public MRTrainController trainController;
+    public MRTrainController_yun trainController;
 
     public Transform player;
     public Vector3 playerOriginalPostion;
     public Quaternion playerOriginalRotation;
     public bool onTrain;
-    public float positionUpOffset;
+    // public float positionUpOffset;
 
-    // public EasyMovementController easyMovementController;
+    public EasyMovementController easyMovementController;
     
     // =============William's code================
-    // public List<Transform> section3List;
+    // public List<Transform> pathPointList;
     public List<Transform> touchPathPoints;
     private int sec3Idx;
     private int touchIdx;
     public List<Transform> tmpPathPoints;
-    // public RoadMeshCreator roadMeshCreator3;
+    // public RoadMeshCreator roadMeshCreator;
 
     public OVRInput.Controller controller;
     public Transform rightHandAnchor;
+
+    public GameObject magicSymbol_ending;
+    public AudioSource m_AudioSource;
+
 
     // Start is called before the first frame update
     void Start()
     {
         //pathPointsList = new List<Transform>(); // 初始化路徑點列表
 
-        for(int i=0;i<section1Transform.childCount;i++)
+        // for(int i=0;i<section1Transform.childCount;i++)
+        // {
+        //     section1List.Add(section1Transform.GetChild(i));
+        // }
+        // for(int i=0;i<section2Transform.childCount;i++)
+        // {
+        //     section2List.Add(section2Transform.GetChild(i));
+        // }
+        for(int i=0;i<pathTransform.childCount;i++)
         {
-            section1List.Add(section1Transform.GetChild(i));
-        }
-        for(int i=0;i<section2Transform.childCount;i++)
-        {
-            section2List.Add(section2Transform.GetChild(i));
-        }
-        for(int i=0;i<section3Transform.childCount;i++)
-        {
-            section3List.Add(section3Transform.GetChild(i));
-            section3Transform.GetChild(i).GetComponent<Renderer>().enabled = false;
+            pathPointList.Add(pathTransform.GetChild(i));
+            pathTransform.GetChild(i).GetComponent<Renderer>().enabled = false;
         }
 
-        // canDraw = true;
+        canDraw = true;
         // onTrain = false;
 
         // 繪製路徑點的方法
@@ -77,13 +81,13 @@ public class TouchDrawPath : MonoBehaviour
         // pathCreator2.bezierPath = bezierPath2; 
         // // bezierPath2.GlobalNormalsAngle = 90f;
 
-        // BezierPath bezierPath3 = new BezierPath(section3List, isClosed: false, PathSpace.xyz);
-        // pathCreator3.bezierPath = bezierPath3; 
+        // BezierPath bezierPath3 = new BezierPath(pathPointList, isClosed: false, PathSpace.xyz);
+        // pathCreator.bezierPath = bezierPath3; 
         // bezierPath3.GlobalNormalsAngle = 90f;
 
         // roadMeshCreator1.TriggerUpdate();
         // roadMeshCreator2.TriggerUpdate();
-        // roadMeshCreator3.TriggerUpdate();
+        // roadMeshCreator.TriggerUpdate();
         
         // =============William's code================
         sec3Idx = 0;
@@ -98,27 +102,58 @@ public class TouchDrawPath : MonoBehaviour
         // =============William's code================
         
         // When the Forefinger is holding and pressing the Trigger button
-        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, controller)) {
+        if (canDraw && OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, controller)) {
             TrackControllerPosition();
         }
 
         // When the Forefinger release the Trigger button
-        if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger, controller)) {
+        if (canDraw && OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger, controller)) {
             print("====GetUp and UpdatePath");
-            for (int i = 0; i < touchPathPoints.Count; i++)
+            if(touchIdx < touchPathPoints.Count && touchPathPoints[touchIdx].GetComponent<Collider>().bounds.Contains(rightHandAnchor.position))
             {
-                if(i == touchIdx+1)
+                touchPathPoints[touchIdx].GetComponent<Renderer>().enabled = false;
+                sec3Idx = pathPointList.IndexOf(touchPathPoints[touchIdx]);
+                if (sec3Idx > 0)
                 {
-                    touchPathPoints[i].GetComponent<Renderer>().enabled = true;
+                    tmpPathPoints = new List<Transform>(pathPointList.GetRange(0, sec3Idx+1));
+                    UpdatePath();
+                } 
+                if (touchIdx == touchPathPoints.Count - 1)
+                {
+                    canDraw = false;
+                    trainController.StartRiding();
+                    // player.position = trainController.transform.position + trainController.transform.up * positionUpOffset;
+                    // player.forward = trainController.transform.forward;
+                    // player.transform.parent = trainController.transform;
+                    onTrain = true;
+                    magicSymbol_ending.SetActive(true);
+                    easyMovementController.enableControl = false;
+
+                    m_AudioSource.Play();
+                    m_AudioSource.volume = 1.0f;
+                    // easyMovementController.enableControl = false;
+                    // trainController.StartRiding();
                 }
                 else
                 {
-                    touchPathPoints[i].GetComponent<Renderer>().enabled = false;
+                    touchPathPoints[touchIdx+1].GetComponent<Renderer>().enabled = true;
+                    canDraw = true;
+                    touchIdx += 1;
                 }
             }
-            tmpPathPoints = new List<Transform>(section3List.GetRange(0, sec3Idx+1));
-            UpdatePath();
-            
+
+            // for (int i = 0; i < touchPathPoints.Count; i++)
+            // {
+            //     if(i == touchIdx+1 && touchIdx+1 < touchPathPoints.Count)
+            //     {
+            //         touchPathPoints[i].GetComponent<Renderer>().enabled = true;
+            //     }
+            //     else
+            //     {
+            //         touchPathPoints[i].GetComponent<Renderer>().enabled = false;
+            //     }
+            // }
+
         }
 
         // if (canDraw && Input.GetKeyDown(KeyCode.Space)) { // 如果按下空格鍵
@@ -127,29 +162,10 @@ public class TouchDrawPath : MonoBehaviour
         // if (canDraw && OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, controller)) { // 如果按下空格鍵
         //     DrawPoint(rightHandAnchor.position); // 呼叫 DrawPoint 方法，繪製路徑點
         // }
-        // if (OVRInput.GetDown(OVRInput.Button.One, controller)) { // 如果按下空格鍵
-        //     canDraw = false;
-        //     trainController.StartRiding();
-        // }
+        
         // if (OVRInput.GetDown(OVRInput.Button.Two, controller)) { // 如果按下空格鍵
         //     // TODO : change viewpoint
-        //     if (onTrain) { // from train to audience
-        //         player.position = playerOriginalPostion;
-        //         player.rotation = playerOriginalRotation;
-        //         player.transform.parent = null;
-        //         onTrain = false;
-        //         trainController.transform.Find("Model").gameObject.SetActive(true);
-        //         easyMovementController.enableControl = true;
-        //     } else { // from audience to train
-        //         playerOriginalPostion = player.position;
-        //         playerOriginalRotation = player.rotation;
-        //         player.position = trainController.transform.position + trainController.transform.up * positionUpOffset;
-        //         player.forward = trainController.transform.forward;
-        //         player.transform.parent = trainController.transform;
-        //         onTrain = true;
-        //         trainController.transform.Find("Model").gameObject.SetActive(false);
-        //         easyMovementController.enableControl = false;
-        //     }
+            
         // }
 
         // if (Input.GetKeyDown(KeyCode.Space) || (OVRInput.Get(OVRInput.Button.One, controller))) { // 如果按下空格鍵 or A
@@ -188,11 +204,11 @@ public class TouchDrawPath : MonoBehaviour
         {
             if(touchPathPoints[i].GetComponent<Collider>().bounds.Contains(rightHandAnchor.position))
             {
-                touchPathPoints[i].GetComponent<Renderer>().material.color = Color.green;
+                touchPathPoints[i].GetComponent<Renderer>().material.color = Color.red;
                 print("=======Inside touchPathPoints[i]" + touchPathPoints[i]);
-                //Use touchPathPoints[i] to get the index in section3List
-                touchIdx = i;
-                sec3Idx = section3List.IndexOf(touchPathPoints[i]);
+                //Use touchPathPoints[i] to get the index in pathPointList
+                // touchIdx = i;
+                // sec3Idx = pathPointList.IndexOf(touchPathPoints[i]);
             }
             else
             {
@@ -205,12 +221,12 @@ public class TouchDrawPath : MonoBehaviour
     private void UpdatePath()
     {
         BezierPath bezierPath = new BezierPath(tmpPathPoints, isClosed: false, PathSpace.xyz);
-        pathCreator3.bezierPath = bezierPath; 
+        pathCreator.bezierPath = bezierPath; 
         print("Update bezierPath done");
        
         // bezierPath.GlobalNormalsAngle = 90f;
 
-        roadMeshCreator3.TriggerUpdate();
+        roadMeshCreator.TriggerUpdate();
     }
 
    

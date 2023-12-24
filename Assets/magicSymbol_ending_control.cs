@@ -39,5 +39,7 @@ public class magicSymbol_ending_control : MonoBehaviour
         player.position = whiteRm_pos.position;
         player.rotation = whiteRm_pos.rotation;
         player.parent = null; 
+
+        s2_Manager.playEnding();
     }
 }

@@ -8,10 +8,11 @@ public class EasyMovementController : MonoBehaviour
     public Transform headTransform;
     public OVRInput.Controller rightController; // 設置控制器
     public bool enableControl;
+    public float moveSpeed = 0.05f;
     // Start is called before the first frame update
     void Start()
     {
-        enableControl = true;
+        enableControl = false;
     }
 
     // Update is called once per frame
@@ -21,40 +22,40 @@ public class EasyMovementController : MonoBehaviour
             // move left right
             if (OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, rightController).x < -0.5f) { 
                 print("left");
-                // trnsform.position += headTransform.right * -0.1f;
-                Vector3 newPosition = transform.position + headTransform.right * -0.1f;
-                if (CheckPointInsideCollider(newPosition))
-                {
-                    transform.position = newPosition;
-                }
+                transform.position += headTransform.right * -moveSpeed;
+                // Vector3 newPosition = transform.position + headTransform.right * -0.1f;
+                // if (CheckPointInsideCollider(newPosition))
+                // {
+                //     transform.position = newPosition;
+                // }
             }
             if (OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, rightController).x > 0.5f) { 
                 print("right");
-                // transform.position += headTransform.right * 0.1f;
-                Vector3 newPosition = transform.position + headTransform.right * 0.1f;
-                if (CheckPointInsideCollider(newPosition))
-                {
-                    transform.position = newPosition;
-                }
+                transform.position += headTransform.right * moveSpeed;
+                // Vector3 newPosition = transform.position + headTransform.right * 0.1f;
+                // if (CheckPointInsideCollider(newPosition))
+                // {
+                //     transform.position = newPosition;
+                // }
             }
             // move forward backward
             if (OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, rightController).y < -0.5f) { 
                 print("back");
-                // transform.position += headTransform.forward * -0.1f;
-                Vector3 newPosition = transform.position + headTransform.forward * -0.1f;
-                if (CheckPointInsideCollider(newPosition))
-                {
-                    transform.position = newPosition;
-                }
+                transform.position += headTransform.forward * -moveSpeed;
+                // Vector3 newPosition = transform.position + headTransform.forward * -0.1f;
+                // if (CheckPointInsideCollider(newPosition))
+                // {
+                //     transform.position = newPosition;
+                // }
             }
             if (OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, rightController).y > 0.5f) { 
                 print("forward");
-                // transform.position += headTransform.forward * 0.1f;
-                Vector3 newPosition = transform.position + headTransform.forward * 0.1f;
-                if (CheckPointInsideCollider(newPosition))
-                {
-                    transform.position = newPosition;
-                }
+                transform.position += headTransform.forward * moveSpeed;
+                // Vector3 newPosition = transform.position + headTransform.forward * 0.1f;
+                // if (CheckPointInsideCollider(newPosition))
+                // {
+                //     transform.position = newPosition;
+                // }
             }
         }
     }

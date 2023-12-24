@@ -12,6 +12,8 @@ public class GameInstruct_UI_Control : MonoBehaviour
     public GameObject GameInstruct_obj;
     public PlayableDirector UI_fade;
     public bool played;
+
+    public TouchDrawPath touchDrawPath;
     void Start()
     {
         
@@ -31,6 +33,7 @@ public class GameInstruct_UI_Control : MonoBehaviour
                 }
                 else if (subtitle_id > gameInstruct_UI.subtitles.Length-1)
                 {
+                    touchDrawPath.easyMovementController.enableControl = true;
                     StartCoroutine(fade_destroy());
                 }
             }

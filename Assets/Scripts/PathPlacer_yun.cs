@@ -10,6 +10,9 @@ namespace PathCreation.Examples {
         public GameObject holder;
         public float spacing = 3;
 
+        public bool startMove = false;
+        public int TotalScore = 0;
+
         const float minSpacing = .1f;
         // public int idx = 0;
         // public int localCount = 0;
@@ -25,7 +28,7 @@ namespace PathCreation.Examples {
         public void Generate () {
             if (pathCreator != null && prefab != null && holder != null) {
                 DestroyObjects ();
-
+                if(!startMove) return;
                 VertexPath path = pathCreator.path;
 
                 // spacing = 0.9563711f;
